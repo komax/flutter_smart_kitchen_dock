@@ -189,7 +189,6 @@ public class SmartKitchenDockPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
         self?.publishEvent(["type": "gesture", "data": gesture.rawValue])
       }
       .store(in: &cancellables)
-    dock.sendTest()
     return nil
   }
 
