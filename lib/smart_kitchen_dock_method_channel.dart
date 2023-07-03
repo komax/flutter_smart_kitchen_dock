@@ -20,8 +20,7 @@ class MethodChannelSmartKitchenDock extends SmartKitchenDockPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version =
-        await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
 
@@ -72,8 +71,7 @@ class MethodChannelSmartKitchenDock extends SmartKitchenDockPlatform {
     controller = StreamController<Gesture>(onListen: () async {
       events?.cancel();
       events ??= eventChannel.receiveBroadcastStream().listen((data) {
-        controller?.add(
-            Gesture.values.byName((data["data"] as String).toLowerCase()));
+        controller?.add(Gesture.values.byName((data["data"] as String).toLowerCase()));
       });
     }, onCancel: () {
       events?.cancel();

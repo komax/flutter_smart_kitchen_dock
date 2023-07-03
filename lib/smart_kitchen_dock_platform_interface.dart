@@ -2,12 +2,7 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'smart_kitchen_dock_method_channel.dart';
 
-enum Gesture {
-  up,
-  down,
-  left,
-  right
-}
+enum Gesture { up, down, left, right }
 
 abstract class SmartKitchenDockPlatform extends PlatformInterface {
   /// Constructs a SmartKitchenDockPlatform.
