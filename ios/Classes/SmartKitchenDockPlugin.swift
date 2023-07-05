@@ -14,7 +14,6 @@ final public class ExternalAccessoryKitchenDock: NSObject, StreamDelegate {
   public static let shared = ExternalAccessoryKitchenDock()
 
   private init(manager: EAAccessoryManager = .shared()) {
-    print("initing")
     self.manager = manager
     self.connectionSubject = CurrentValueSubject(false)
     self.gestureSubject = PassthroughSubject()
@@ -47,7 +46,6 @@ final public class ExternalAccessoryKitchenDock: NSObject, StreamDelegate {
   // MARK: - Private Helpers
 
   private func registerForLocalNotifications() {
-    print("REgistered")
     manager.registerForLocalNotifications()
 
     NotificationCenter.default.publisher(for: .EAAccessoryDidConnect)
@@ -64,7 +62,6 @@ final public class ExternalAccessoryKitchenDock: NSObject, StreamDelegate {
   }
 
   private var connectedAccessory: EAAccessory? {
-    print("connected? \(manager.connectedAccessories)")
     return manager.connectedAccessories.first(where: { $0.protocolStrings.contains(protocolString) }
     )
   }
@@ -111,11 +108,8 @@ final public class ExternalAccessoryKitchenDock: NSObject, StreamDelegate {
   public func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
     switch (aStream, eventCode) {
     case (let inputStream as InputStream, .hasBytesAvailable):
-      print(inputStream)
       let readData = readData(from: inputStream)
-      print("Just read \(readData)")
       if let gesture = Gesture.decode(from: readData) {
-        print(gesture.rawValue)
         gestureSubject.send(gesture)
       }
     case (_, .endEncountered), (_, .errorOccurred):
@@ -172,7 +166,6 @@ public class SmartKitchenDockPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
   }
 
   func publishEvent(_ event: [String: Any?]) {
-    print("publishing \(event)")
     eventSink?(event)
   }
 
@@ -180,7 +173,6 @@ public class SmartKitchenDockPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
     withArguments arguments: Any?,
     eventSink: @escaping FlutterEventSink
   ) -> FlutterError? {
-    print("swift on listen")
     var cancellables = Set<AnyCancellable>()
     self.eventSink = eventSink
     dock.resume()
@@ -193,7 +185,6 @@ public class SmartKitchenDockPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
   }
 
   public func onCancel(withArguments arguments: Any?) -> FlutterError? {
-    print("Swift: removing listener")
     eventSink = nil
     dock.pause()
     return nil
