@@ -5,14 +5,6 @@ class SmartKitchenDock {
     return SmartKitchenDockPlatform.instance.getPlatformVersion();
   }
 
-  Future<String?> startListening() {
-    return SmartKitchenDockPlatform.instance.startListening();
-  }
-
-  Future<String?> stopListening() {
-    return SmartKitchenDockPlatform.instance.stopListening();
-  }
-
   Stream<Gesture> gestures() {
     return SmartKitchenDockPlatform.instance.gestures();
   }

@@ -1,10 +1,13 @@
 name: flutter_smart_kitchen_dock
-description: Smart kitchen dock plugin.
+description: |
+  Smart kitchen dock plugin. Creates a stream of gestures sent by the Smart 
+  Kitchen Dock to be used by your flutter app.
 version: 0.0.1
 homepage:
+repository: https://github.com/KitchenStories/flutter_smart_kitchen_dock
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: ">=2.19.6 <3.0.0"
   flutter: ">=2.5.0"
 
 dependencies:

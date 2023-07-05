@@ -29,15 +29,7 @@ abstract class SmartKitchenDockPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<String?> startListening() {
-    throw UnimplementedError('startListening() has not been implemented.');
-  }
-
   Stream<Gesture> gestures() {
     throw UnimplementedError('startListening() has not been implemented.');
-  }
-
-  Future<String?> stopListening() {
-    throw UnimplementedError('stopListening() has not been implemented.');
   }
 }
