@@ -25,7 +25,6 @@ class SmartKitchenDockPlugin: FlutterPlugin, MethodCallHandler {
     if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else if (call.method == "startListening") {
-      AoADevice
       result.success("Android hey listen")
     } else {
       result.notImplemented()
