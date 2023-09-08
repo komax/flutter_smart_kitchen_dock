@@ -62,8 +62,7 @@ final public class ExternalAccessoryKitchenDock: NSObject, StreamDelegate {
   }
 
   private var connectedAccessory: EAAccessory? {
-    return manager.connectedAccessories.first(where: { $0.protocolStrings.contains(protocolString) }
-    )
+    return manager.connectedAccessories.first(where: { $0.protocolStrings.contains(protocolString) })
   }
 
   public func resume() {
@@ -150,6 +149,7 @@ public class SmartKitchenDockPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
   private let dock: ExternalAccessoryKitchenDock = ExternalAccessoryKitchenDock.shared
   public var eventChannel: FlutterEventChannel
   private var eventSink: FlutterEventSink? = nil
+  private var cancellables = Set<AnyCancellable>()
 
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(
@@ -173,7 +173,6 @@ public class SmartKitchenDockPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
     withArguments arguments: Any?,
     eventSink: @escaping FlutterEventSink
   ) -> FlutterError? {
-    var cancellables = Set<AnyCancellable>()
     self.eventSink = eventSink
     dock.resume()
     dock.gesturePublisher()
