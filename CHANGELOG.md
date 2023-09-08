@@ -1,3 +1,8 @@
+## 0.0.2
+
+- Handle listener lifetime correctly in iOS
+- Removed unused class referenced in Android
+
 ## 0.0.1
 
 - Adds support for ios devices EAAccessory dock connection
